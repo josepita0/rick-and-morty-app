@@ -1,3 +1,5 @@
+"use client";
+
 import { IconSquareX } from "@tabler/icons-react";
 
 import { cn } from "@/lib/utils";
@@ -11,9 +13,6 @@ import {
 } from "@/components/ui/drawer";
 
 interface IProps {
-  title: string;
-  description?: string;
-
   width?: string;
 
   onClose?: () => void;
@@ -22,13 +21,11 @@ interface IProps {
 }
 
 export const DrawerViews = ({
-  title,
-  description,
   onClose,
   children,
   width = "sm:w-[500px]",
 }: IProps) => {
-  const { toggleDrawer } = useDrawerStore();
+  const { dataDrawer, toggleDrawer } = useDrawerStore();
 
   return (
     <DrawerContent
@@ -52,9 +49,9 @@ export const DrawerViews = ({
               />
             </DrawerClose>
             <div className="w-full flex flex-col items-start space-y-2">
-              <DrawerTitle>{title}</DrawerTitle>
+              <DrawerTitle>{dataDrawer?.title}</DrawerTitle>
 
-              <DrawerDescription>{description} </DrawerDescription>
+              <DrawerDescription>{dataDrawer?.description} </DrawerDescription>
             </div>
           </div>
 

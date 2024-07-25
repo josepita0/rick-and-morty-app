@@ -1,7 +1,13 @@
 import { UseFormReturn } from "react-hook-form";
 
+type NestedKeyOf<ObjectType> = {
+  [Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
+    ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
+    : `${Key}`;
+}[keyof ObjectType & (string | number)];
+
 interface IInput<T> {
-  id: keyof T;
+  id: NestedKeyOf<T>;
   tabIndex?: number;
   placeholder?: string;
   disabled?: boolean;

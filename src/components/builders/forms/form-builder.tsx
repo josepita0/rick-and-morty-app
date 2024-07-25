@@ -1,17 +1,15 @@
-import { z } from "zod";
-
 import { cn } from "@/lib/utils";
-import { useInstanceForm } from "@/lib/hooks/use-instance-form";
 
 import { Form } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+
 import { FormFieldBuilder } from "@/components/builders/forms/form-field";
 import { IFormSections } from "@/components/builders/forms/form-builer.interface";
-import { Button } from "@/components/ui/button";
 
 interface IProps {
   onSubmit?: <T>(data: T) => void;
   buttonText?: string;
-  formConfig?: IFormSections;
+  formConfig?: IFormSections<any>;
   children?: React.ReactNode;
 }
 
