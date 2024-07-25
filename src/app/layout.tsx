@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 import { ProgressBarPleas } from "@/components/progress-bar";
 import { DrawerProvider } from "@/components/providers/drawer-provider";
+import { QueryProvider } from "@/components/providers/use-query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -32,7 +33,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={cn(inter.className, "bg-[#F2F3F5] dark:bg-[#313338]")}>
-        {" "}
         <ProgressBarPleas />
         <ThemeProvider
           attribute="class"
@@ -42,7 +42,9 @@ export default function RootLayout({
         >
           <Toaster richColors position="bottom-right" />
 
-          <DrawerProvider>{children}</DrawerProvider>
+          <DrawerProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </DrawerProvider>
         </ThemeProvider>
       </body>
     </html>

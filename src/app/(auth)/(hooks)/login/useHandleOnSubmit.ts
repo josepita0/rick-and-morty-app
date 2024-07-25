@@ -8,7 +8,9 @@ export const useOnSubmit = () => {
 
   const onSubmit = (data: IFormLogin) => {
     const exist = registers.find(
-      (register) => register.userName === data.userName
+      (register) =>
+        register.userName === data.userName &&
+        register.password === data.password
     );
 
     if (exist) {
